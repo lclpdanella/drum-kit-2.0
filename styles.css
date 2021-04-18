@@ -21,6 +21,7 @@ body {
     align-items: center;
     justify-content: center;
     opacity: 1;
+    flex-wrap: wrap;
 }
 
 .key {
@@ -59,3 +60,9 @@ span {
     color: rgb(217, 231, 15);
     margin-top: 10px;
 }
+
+@media screen and (max-width: 600px) {
+    .key {
+        margin: 30px;
+    }
+  }
