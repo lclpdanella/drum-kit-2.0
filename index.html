@@ -58,15 +58,28 @@
     <audio data-key="76" src="sound/hiHat.wav"></audio>
 
     <script>
-      // testando funcao que recebe a tecla
-      window.addEventListener("keydown", function (e) {
+      //function that linsten the key, play sound and add class, 
+      function playSound(e){
         const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
         if (!audio) {
           return;
         } // stop the function from running all togheter
         audio.currentTime = 0; // rewind to the start
         audio.play();
-      });
+        key.classList.add("playing");
+      }
+
+      //function that remove the transform property after the end
+      function removeTransition(e){
+          if(e.propertyName !== "transform") return;
+          this.classList.remove("playing");
+      }
+
+      window.addEventListener("keydown", playSound);
+      const keys = document.querySelectorAll(".key");
+      keys.forEach(key => key.addEventListener("transitionend", removeTransition));
+
     </script>
   </body>
 </html>
